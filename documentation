@@ -1,0 +1,26 @@
+Could add queue to use
+
+Im taking data structure and algorithm this semester and have just come to queue so probably can use that.
+
+Searched how to set timer, shift and unshift an array, splicing an array
+
+if(order length !== 0)
+
+if bot is added check for the currently processing
+
+if empty then push the first element of the order
+
+if bot deleted target the processing element to remove it
+(find the element)
+
+if done processing (find and remove)
+
+check for currently processing and compare with the orders if not inside then push (store the value we push for reference)
+
+if(order length !== 0)
+
+    outer loop that executes once
+
+    set interval executes again after the process succeed
+
+order come in trigger the bot to execute this function
