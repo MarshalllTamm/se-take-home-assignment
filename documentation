@@ -24,3 +24,7 @@ if(order length !== 0)
     set interval executes again after the process succeed
 
 order come in trigger the bot to execute this function
+
+researched about undefined a variable
+
+https://www.tutorialspoint.com/how-to-unset-a-javascript-variable#:~:text=To%20unset%20a%20variable%20in,operator%20to%20completely%20remove%20it.
