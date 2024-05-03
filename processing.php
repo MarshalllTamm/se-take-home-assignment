@@ -9,12 +9,12 @@
 
         echo <<<html
             <div class="col-3 text-center justify-self-center rounded border {$placeholder}" style="height: 150px;" id="{$placeholder}-{$_POST['order_amount']}">
-                <div class="w-100" style="height: 70%;">
+                <div class="w-100 container-fluid overflow-hidden align-content-center" style="height: 70%;">
         html;
         echo $_POST['order_detail'];
         echo <<<html
                 </div>
-                <div class="w-100" style="height: 30%;">
+                <div class="w-100 align-content-center" style="height: 20%;">
         html;
         echo "x " . $_POST['order_quantity'];
         echo <<<html
@@ -37,7 +37,7 @@
     if(isset($_POST['add_bot']) && isset($_POST['bot_amount'])){
         echo <<<html
             <div class="col-3 text-center justify-self-center bg-black rounded p-0" style="height: 150px;" id="bot-{$_POST['bot_amount']}">
-                <img src="Images/robot.png" height="150" class="" alt="">
+                <img src="Images/McDonaldRobot.jpeg" height="150" class="rounded" alt="">
                 <script>
                     bot_managing_{$_POST['bot_amount']} = "";
                     interval_{$_POST['bot_amount']} = 0;
@@ -62,7 +62,6 @@
             
                         interval_{$_POST['bot_amount']} = setInterval(function(){
                             let temp = processing.findIndex((element) => element == bot_managing_{$_POST['bot_amount']});
-                            
                             console.log("Currently Processing Queue: " + processing);
                             
                             if(temp !== -1){
@@ -103,7 +102,7 @@
             
                             console.log("Currently Processing: " + bot_managing_{$_POST['bot_amount']});
                             console.log("Process Queue after interval: " + processing);
-                        }, 1000);
+                        }, 10000);
                     }
 
                     start_process_{$_POST['bot_amount']}();

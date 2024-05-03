@@ -1,0 +1,63 @@
+function start_process(){
+    for(let i = 0; i < order_queue.length; i++){
+        if(processing.length === 0 && order_queue.length > 0){
+            bot_managing_ = order_queue[i];
+            processing.push(order_queue[i]);
+            console.log(processing);
+            console.log(bot_managing_);
+            break;
+        }
+        else if(order_queue.length > 0 && processing[i] === undefined){
+            bot_managing_ = order_queue[i];
+            processing.push(order_queue[i]);
+            console.log(processing);
+            console.log(bot_managing_);
+            break;
+        }
+    }
+
+    x = setInterval(function(){
+        let temp = processing.findIndex((element) => element == bot_managing_);
+        
+        console.log("Currently Processing Queue: " + processing);
+        
+        if(temp !== -1){
+            if($("#" + bot_managing_).hasClass("regular-order")){
+                $("#" + bot_managing_).removeClass("regular-order");
+                regular_order_amount -= 1;
+            }
+            else{
+                $("#" + bot_managing_).removeClass("vip-order");
+                vip_order_amount -= 1;
+            }
+
+            $("#" + bot_managing_).addClass("completed-order");
+            $(".complete-area").append($("#" + bot_managing_).detach());
+            processing.splice(temp, 1);
+            order_queue.splice(temp, 1);
+            
+            console.log("Completed: " + bot_managing_);
+            bot_managing_ = "";
+        }
+        
+        console.log("Processing Queue After Completion: " + processing);
+        
+        for(let i = 0; i < order_queue.length; i++){
+            if(processing.length === 0 && order_queue.length > 0){
+                bot_managing_ = order_queue[i];
+                processing.push(order_queue[i]);
+                console.log("Added to Process Queue through condition 1: " + processing);
+                break;
+            }
+            else if(order_queue.length > 0 && processing[i] === undefined){
+                bot_managing_ = order_queue[i];
+                processing.push(order_queue[i]);
+                console.log("Added to Process Queue through condition 1: " + processing);
+                break;
+            }
+        }
+
+        console.log("Currently Processing: " + bot_managing_);
+        console.log("Process Queue after interval: " + processing);
+    }, 5000);
+}

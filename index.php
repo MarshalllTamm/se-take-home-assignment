@@ -1,8 +1,3 @@
-<?php
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,61 +7,123 @@
     <!-- bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- fa -->
+    <script src="https://kit.fontawesome.com/45f3407b19.js" crossorigin="anonymous"></script>
 </head>
 <style>
     *{
         margin: 0px;
     }
+
+    body{
+        background-color: beige;
+    }
+
+    .completed-order{
+        border: double greenyellow 5px !important;
+        background-color: lightgreen;
+    }
+
+    .vip-order{
+        font-weight: bold;
+        color: white;
+        border: outset burlywood 5px !important;
+        border-style: dotted;
+        background-color: goldenrod;
+    }
+
+    .regular-order{
+        border: solid lightblue 5px !important;
+        background-color: lightcyan;
+    }
+
 </style>
 <body>
 
     <!-- interface area  -->
     <div class="container-fluid m-0" style="height: 90vh; max-height: 90vh;">
-        <div class="row h-100">
+        <div class="row p-3 h-100">
             <!-- Bot Area -->
-            <div class="col-6 p-3">
-                <div class="container-fluid">
-                    <div class="row justify-content-center h-100 gap-3 bot-area">
+            <div class="col-6 p-3 pt-0 my-2 border rounded bg-white">
+                <div class="d-flex p-2 align-content-center justify-content-center mb-3 fw-bold text-danger" style="height: 9%; border-bottom: solid 1px gainsboro;">
+                    <i class="fa-solid fa-robot align-self-center m-2"></i>
+                    Bot Area
+                </div>
+                <div class="container-fluid" style="height: 90%;">
+                    <div class="row justify-content-center h-100 gap-3 bot-area overflow-y-scroll" style="max-height: 75vh;">
 
                     </div>  
                 </div>
             </div>
-            <!--  -->
-            <div class="col-6 p-0 my-2 border rounded">
+
+            <!-- Order Area -->
+            <div class="col-6 p-0 my-2 border rounded bg-white">
+                <!-- nav tab controller -->
                 <nav>
                     <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                            <i class="fa-solid fa-spinner"></i>
+                            Pending Area
+                        </button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                            <i class="fa-regular fa-circle-check"></i>
+                            Completed Area
+                        </button>
                     </div>
                 </nav>
-                <div class="tab-content p-3 pb-0 overflow-hidden" id="nav-tabContent">
-                    <div class="tab-pane fade show active overflow-hidden" style="max-height: 75vh;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        
-                    </div>
-                    <div class="tab-pane fade" style="max-height: 75vh;" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        ...
-                    </div>
-                </div>
-                
-                <!-- Pending Area -->
-                <div class="container m-0 mt-3 p-0 overflow-y-scroll overflow-x-hidden w-100 ">
-                    <!-- Append Area -->
-                    <div class="row justify-content-center h-100 gap-3 pending-area">
+                <!-- nav tab contents -->
+                <div class="tab-content p-3 pb-0" id="nav-tabContent" >
+                    <!-- Pending Area -->
+                    <div class="tab-pane container fade show active overflow-hidden" style="max-height: 75vh;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row justify-content-center h-100 gap-3 pending-area overflow-y-scroll" style="max-height: 75vh;">
 
-                    </div>
-                </div>
+                            <!-- <div class="col-3 text-center justify-self-center rounded border completed" style="height: 150px;" id="{$placeholder}-{$_POST['order_amount']}">
+                                <div class="w-100" style="height: 70%;">
+                                    1
+                                </div>
+                                <div class="w-100" style="height: 30%;">
+                                    x 1
+                                </div> 
+                            </div> -->
 
-                <!-- Complete Area -->
-                <div class="container m-0 mt-3 p-0 overflow-y-scroll overflow-x-hidden w-100 d-none">
-                    <!-- Append Area -->
-                    <div class="row h-100 gap-3 complete-area">
-                        <div class="col-3 text-center justify-self-center">
-                            hi
+
+                        </div>
+                    </div>
+                    <!-- Completed Area -->
+                    <div class="tab-pane container fade" style="max-height: 75vh;" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="row justify-content-center h-100 w-100 p-0 gap-3 complete-area overflow-y-scroll" style="max-height: 75vh;">
+
                         </div>
                     </div>
                 </div>
-
             </div>
+
+        </div>
+    </div>
+
+    <!-- "+ Bot" Button & Order buttons -->
+    <!-- Buttons Aligner -->
+    <div class="d-flex py-2 gap-3 justify-content-center bg-white rounded" style="height: 10vh;">
+        <!-- Add Icons -->
+        <div class="btn btn-danger remove-bot">
+            <i class="fa-solid fa-trash"></i>
+            <i class="fa-solid fa-robot"></i>
+            Remove Bots
+        </div>
+        <div class="btn btn-success add-bot">
+            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-robot"></i>
+            Add Bots
+        </div>
+        <div class="btn btn-warning open-order-modal">
+            <i class="fa-solid fa-plus"></i>
+            <i class="fa-regular fa-file-lines"></i>
+            New Orders
+        </div>
+        <div class="btn btn-warning open-vip-order-modal">
+            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-file-lines"></i>
+            New Vip Orders
         </div>
     </div>
 
@@ -116,24 +173,6 @@
         </div>
     </div>
 
-    <!-- "+ Bot" Button & Order buttons -->
-    <!-- Buttons Aligner -->
-    <div class="d-flex p-3 gap-3 justify-content-center bg-secondary" style="height: 10vh;">
-        <!-- Add Icons -->
-        <div class="btn btn-primary remove-bot">
-            Remove Bots
-        </div>
-        <div class="btn btn-primary add-bot">
-            Add Bots
-        </div>
-        <div class="btn btn-primary open-order-modal">
-            New Orders
-        </div>
-        <div class="btn btn-primary open-vip-order-modal">
-            New Vip Orders
-        </div>
-    </div>
-
     <div id="delete-area">
     </div>
 
@@ -156,70 +195,6 @@
 
         bot_managing_ = "";
         interval_ = 0;
-
-        // function start_process(){
-        //     for(let i = 0; i < order_queue.length; i++){
-        //         if(processing.length === 0 && order_queue.length > 0){
-        //             bot_managing_ = order_queue[i];
-        //             processing.push(order_queue[i]);
-        //             console.log(processing);
-        //             console.log(bot_managing_);
-        //             break;
-        //         }
-        //         else if(order_queue.length > 0 && processing[i] === undefined){
-        //             bot_managing_ = order_queue[i];
-        //             processing.push(order_queue[i]);
-        //             console.log(processing);
-        //             console.log(bot_managing_);
-        //             break;
-        //         }
-        //     }
-
-        //     x = setInterval(function(){
-        //         let temp = processing.findIndex((element) => element == bot_managing_);
-                
-        //         console.log("Currently Processing Queue: " + processing);
-                
-        //         if(temp !== -1){
-        //             if($("#" + bot_managing_).hasClass("regular-order")){
-        //                 $("#" + bot_managing_).removeClass("regular-order");
-        //                 regular_order_amount -= 1;
-        //             }
-        //             else{
-        //                 $("#" + bot_managing_).removeClass("vip-order");
-        //                 vip_order_amount -= 1;
-        //             }
-
-        //             $("#" + bot_managing_).addClass("completed-order");
-        //             $(".complete-area").append($("#" + bot_managing_).detach());
-        //             processing.splice(temp, 1);
-        //             order_queue.splice(temp, 1);
-                    
-        //             console.log("Completed: " + bot_managing_);
-        //             bot_managing_ = "";
-        //         }
-                
-        //         console.log("Processing Queue After Completion: " + processing);
-                
-        //         for(let i = 0; i < order_queue.length; i++){
-        //             if(processing.length === 0 && order_queue.length > 0){
-        //                 bot_managing_ = order_queue[i];
-        //                 processing.push(order_queue[i]);
-        //                 console.log("Added to Process Queue through condition 1: " + processing);
-        //                 break;
-        //             }
-        //             else if(order_queue.length > 0 && processing[i] === undefined){
-        //                 bot_managing_ = order_queue[i];
-        //                 processing.push(order_queue[i]);
-        //                 console.log("Added to Process Queue through condition 1: " + processing);
-        //                 break;
-        //             }
-        //         }
-
-        //         console.log("Currently Processing: " + bot_managing_);
-        //         console.log("Process Queue after interval: " + processing);
-        //     }, 5000);
-        // }
          
         // Bot Quantity Buttons
 
