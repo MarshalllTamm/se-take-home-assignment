@@ -103,7 +103,7 @@
             
                             console.log("Currently Processing: " + bot_managing_{$_POST['bot_amount']});
                             console.log("Process Queue after interval: " + processing);
-                        }, 1000);
+                        }, 10000);
                     }
 
                     start_process_{$_POST['bot_amount']}();
