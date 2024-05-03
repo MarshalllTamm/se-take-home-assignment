@@ -61,10 +61,11 @@
                         }
             
                         interval_{$_POST['bot_amount']} = setInterval(function(){
-                            let temp = processing.findIndex((element) => element == bot_managing_{$_POST['bot_amount']});
+                            let process_index = processing.findIndex((element) => element == bot_managing_{$_POST['bot_amount']});
+                            let order_index = order_queue.findIndex((element) => element == bot_managing_{$_POST['bot_amount']});
                             console.log("Currently Processing Queue: " + processing);
                             
-                            if(temp !== -1){
+                            if(process_index !== -1){
                                 if($("#" + bot_managing_{$_POST['bot_amount']}).hasClass("regular-order")){
                                     $("#" + bot_managing_{$_POST['bot_amount']}).removeClass("regular-order");
                                     regular_order_amount -= 1;
@@ -76,8 +77,8 @@
             
                                 $("#" + bot_managing_{$_POST['bot_amount']}).addClass("completed-order");
                                 $(".complete-area").append($("#" + bot_managing_{$_POST['bot_amount']}).detach());
-                                processing.splice(temp, 1);
-                                order_queue.splice(temp, 1);
+                                processing.splice(process_index, 1);
+                                order_queue.splice(order_index, 1);
                                 
                                 console.log("Completed: " + bot_managing_{$_POST['bot_amount']});
                                 bot_managing_{$_POST['bot_amount']} = "";
@@ -102,7 +103,7 @@
             
                             console.log("Currently Processing: " + bot_managing_{$_POST['bot_amount']});
                             console.log("Process Queue after interval: " + processing);
-                        }, 10000);
+                        }, 1000);
                     }
 
                     start_process_{$_POST['bot_amount']}();

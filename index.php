@@ -188,13 +188,10 @@
         let vip_order_id = 0; // track the total amount of vip order
         let vip_order_amount = 0; // track order amount on the queue
 
-        //
+        // QUEUES
         let bot_amount = 0;
         let processing = [];
         let order_queue = [];
-
-        bot_managing_ = "";
-        interval_ = 0;
          
         // Bot Quantity Buttons
 
@@ -206,7 +203,7 @@
                 bot_amount : bot_amount
             }, function(data, success){
                 $(".bot-area").append(data);
-            });
+            });            
         });
 
         $(document).on("click", ".remove-bot", function(){
@@ -221,7 +218,7 @@
             
             $("#bot-"+bot_amount).remove();
             
-            if(bot_amount > 0){
+            if(bot_amount > 1){
                 bot_amount -= 1;
             }
         });
