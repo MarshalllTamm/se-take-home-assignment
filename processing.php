@@ -35,9 +35,10 @@
 
     // add bot script and bot
     if(isset($_POST['add_bot']) && isset($_POST['bot_amount'])){
+        $random_num = random_int(1, 3);
         echo <<<html
             <div class="col-3 text-center justify-self-center bg-black rounded p-0 mt-2 card-decoration" style="height: 150px;" id="bot-{$_POST['bot_amount']}">
-                <img src="Images/McDonaldRobot.jpeg" height="150" class="rounded" alt="">
+                <img src="Images/robot{$random_num}.jpg" height="150" class="rounded" alt="">
                 <script>
                     bot_managing_{$_POST['bot_amount']} = "";
                     interval_{$_POST['bot_amount']} = 0;
