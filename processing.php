@@ -8,7 +8,7 @@
         }
 
         echo <<<html
-            <div class="col-3 text-center justify-self-center rounded border {$placeholder}" style="height: 150px;" id="{$placeholder}-{$_POST['order_amount']}">
+            <div class="col-3 text-center justify-self-center rounded border card-decoration mt-2 {$placeholder}" style="height: 150px;" id="{$placeholder}-{$_POST['order_amount']}">
                 <div class="w-100 container-fluid overflow-hidden align-content-center" style="height: 70%;">
         html;
         echo $_POST['order_detail'];
@@ -36,7 +36,7 @@
     // add bot script and bot
     if(isset($_POST['add_bot']) && isset($_POST['bot_amount'])){
         echo <<<html
-            <div class="col-3 text-center justify-self-center bg-black rounded p-0" style="height: 150px;" id="bot-{$_POST['bot_amount']}">
+            <div class="col-3 text-center justify-self-center bg-black rounded p-0 mt-2 card-decoration" style="height: 150px;" id="bot-{$_POST['bot_amount']}">
                 <img src="Images/McDonaldRobot.jpeg" height="150" class="rounded" alt="">
                 <script>
                     bot_managing_{$_POST['bot_amount']} = "";
@@ -44,18 +44,18 @@
 
                     function start_process_{$_POST['bot_amount']}(){
                         for(let i = 0; i < order_queue.length; i++){
-                            if(processing.length === 0 && order_queue.length > 0){
+                            if(processing.length === 0){
                                 bot_managing_{$_POST['bot_amount']} = order_queue[i];
                                 processing.push(order_queue[i]);
-                                console.log(processing);
-                                console.log(bot_managing_{$_POST['bot_amount']});
+                                console.log("Currently Processing Queue: " + processing);
+                                console.log("Bot " + {$_POST['bot_amount']} + " is managing : " + bot_managing_{$_POST['bot_amount']});
                                 break;
                             }
-                            else if(order_queue.length > 0 && processing[i] === undefined){
+                            else if(processing[i] === undefined){
                                 bot_managing_{$_POST['bot_amount']} = order_queue[i];
                                 processing.push(order_queue[i]);
-                                console.log(processing);
-                                console.log(bot_managing_{$_POST['bot_amount']});
+                                console.log("Currently Processing Queue: " + processing);
+                                console.log("Bot " + {$_POST['bot_amount']} + " is managing : " + bot_managing_{$_POST['bot_amount']});
                                 break;
                             }
                         }
@@ -80,8 +80,12 @@
                                 processing.splice(process_index, 1);
                                 order_queue.splice(order_index, 1);
                                 
-                                console.log("Completed: " + bot_managing_{$_POST['bot_amount']});
+                                console.log("Completed by Bot " + {$_POST['bot_amount']} + ": " + bot_managing_{$_POST['bot_amount']});
                                 bot_managing_{$_POST['bot_amount']} = "";
+
+                                completed_order += 1;
+                                $(".complete-count-updater").text(completed_order);
+                                $(".pending-count-updater").text(order_queue.length);
                             }
                             
                             console.log("Processing Queue After Completion: " + processing);
@@ -101,7 +105,7 @@
                                 }
                             }
             
-                            console.log("Currently Processing: " + bot_managing_{$_POST['bot_amount']});
+                            console.log("Bot " + {$_POST['bot_amount']} + " Currently Processing: " + bot_managing_{$_POST['bot_amount']});
                             console.log("Process Queue after interval: " + processing);
                         }, 10000);
                     }
@@ -117,6 +121,7 @@
         echo <<<html
             <script>
                 clearInterval(interval_{$_POST['bot_amount']});
+                console.log("Bot " + {$_POST['bot_amount']} + " will halt its process on: " + bot_managing_{$_POST['bot_amount']});
                 processing.splice(processing.findIndex((element) => element == bot_managing_{$_POST['bot_amount']}), 1);
 
                 delete bot_managing_{$_POST['bot_amount']};

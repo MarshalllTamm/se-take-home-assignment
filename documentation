@@ -1,12 +1,10 @@
 Could add queue to use
 
-Im taking data structure and algorithm this semester and have just come to queue so probably can use that.
-
-Searched how to set timer, shift and unshift an array, splicing an array
+Searched how to set timer, shift and unshift an array, splicing an array (scratched)
 
 if(order length !== 0)
 
-if bot is added check for the currently processing
+if bot is added check for the currently processing (scratched)
 
 if empty then push the first element of the order
 
@@ -28,3 +26,31 @@ order come in trigger the bot to execute this function
 researched about undefined a variable
 
 https://www.tutorialspoint.com/how-to-unset-a-javascript-variable#:~:text=To%20unset%20a%20variable%20in,operator%20to%20completely%20remove%20it.
+
+user can select menu and add order but if the menu is not set properly alert will show up
+
+2 area
+-pending area
+    store new order
+
+-complete area
+    store done process orders
+
+4 buttons on click send an ajax request to append element inside dom
+    add bot
+    remove bot
+    add order
+    add vip order
+
+queue algorithm
+summon by add bot
+    if the processing array have nothing store the first element of order queue then break the iteration 
+    if the processing array of the loop is undefined then store the current iteration order queue element and break
+        both of the above stores a copy of the element to the variable called bot_managing_(follow by bot number)
+
+    after 10 second use the element stored in the bot_managing to track the index of the element in the processing and order array and remove it
+    move the pending data to complete area.
+
+pending and completed
+
+

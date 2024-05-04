@@ -20,7 +20,7 @@
     }
 
     .completed-order{
-        border: double greenyellow 5px !important;
+        border: dashed greenyellow 5px !important;
         background-color: lightgreen;
     }
 
@@ -37,9 +37,22 @@
         background-color: lightcyan;
     }
 
-</style>
-<body>
+    .card-decoration{
+        /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; */
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        /* box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; */
+        transition: 0.3s;
+    }
 
+    .card-decoration:hover {
+        scale: 1.1;
+        transition: 0.3s;
+    }
+
+
+</style>
+
+<body>
     <!-- interface area  -->
     <div class="container-fluid m-0" style="height: 90vh; max-height: 90vh;">
         <div class="row p-3 h-100">
@@ -47,7 +60,10 @@
             <div class="col-6 p-3 pt-0 my-2 border rounded bg-white">
                 <div class="d-flex p-2 align-content-center justify-content-center mb-3 fw-bold text-danger" style="height: 9%; border-bottom: solid 1px gainsboro;">
                     <i class="fa-solid fa-robot align-self-center m-2"></i>
-                    Bot Area
+                    Bot Area 
+                    <span class="mx-1">| Current Bot Count &#40;</span>
+                    <span class="mx-1 bot-count-updater">0</span>
+                    <span class="mx-1">&#41;</span>
                 </div>
                 <div class="container-fluid" style="height: 90%;">
                     <div class="row justify-content-center h-100 gap-3 bot-area overflow-y-scroll" style="max-height: 75vh;">
@@ -64,34 +80,32 @@
                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
                             <i class="fa-solid fa-spinner"></i>
                             Pending Area
+                            <span class="mx-1">&#40;</span>
+                            <span class="pending-count-updater">0</span>
+                            <span class="mx-1">&#41;</span>
                         </button>
                         <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                             <i class="fa-regular fa-circle-check"></i>
                             Completed Area
+                            <span class="mx-1">&#40;</span>
+                            <span class="complete-count-updater">0</span>
+                            <span class="mx-1">&#41;</span>
                         </button>
                     </div>
                 </nav>
                 <!-- nav tab contents -->
-                <div class="tab-content p-3 pb-0" id="nav-tabContent" >
+                <div class="tab-content py-3" id="nav-tabContent" >
                     <!-- Pending Area -->
-                    <div class="tab-pane container fade show active overflow-hidden" style="max-height: 75vh;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <div class="row justify-content-center h-100 gap-3 pending-area overflow-y-scroll" style="max-height: 75vh;">
-
-                            <!-- <div class="col-3 text-center justify-self-center rounded border completed" style="height: 150px;" id="{$placeholder}-{$_POST['order_amount']}">
-                                <div class="w-100" style="height: 70%;">
-                                    1
-                                </div>
-                                <div class="w-100" style="height: 30%;">
-                                    x 1
-                                </div> 
-                            </div> -->
-
+                    <div class="tab-pane container fade show active overflow-hidden p-0" style="max-height: 71vh; height: 71vh;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row justify-content-center h-100 w-100 p-0 gap-3 pending-area overflow-y-scroll" style="max-height: 75vh;">
+                            <!-- Pending Orders -->
 
                         </div>
                     </div>
-                    <!-- Completed Area -->
-                    <div class="tab-pane container fade" style="max-height: 75vh;" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <!-- Completed Are a -->
+                    <div class="tab-pane container fade p-0" style="max-height: 71vh; height: 71vh;" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="row justify-content-center h-100 w-100 p-0 gap-3 complete-area overflow-y-scroll" style="max-height: 75vh;">
+                            <!-- Completed Orders -->
 
                         </div>
                     </div>
@@ -103,24 +117,24 @@
 
     <!-- "+ Bot" Button & Order buttons -->
     <!-- Buttons Aligner -->
-    <div class="d-flex py-2 gap-3 justify-content-center bg-white rounded" style="height: 10vh;">
+    <div class="d-flex py-2 gap-3 justify-content-center" style="height: 10vh;">
         <!-- Add Icons -->
-        <div class="btn btn-danger remove-bot">
+        <div class="btn btn-danger fw-bold remove-bot card-decoration">
             <i class="fa-solid fa-trash"></i>
             <i class="fa-solid fa-robot"></i>
             Remove Bots
         </div>
-        <div class="btn btn-success add-bot">
+        <div class="btn btn-success fw-bold add-bot card-decoration">
             <i class="fa-solid fa-plus"></i>
             <i class="fa-solid fa-robot"></i>
             Add Bots
         </div>
-        <div class="btn btn-warning open-order-modal">
+        <div class="btn btn-warning fw-bold text-white open-order-modal card-decoration">
             <i class="fa-solid fa-plus"></i>
             <i class="fa-regular fa-file-lines"></i>
             New Orders
         </div>
-        <div class="btn btn-warning open-vip-order-modal">
+        <div class="btn btn-info fw-bold text-white open-vip-order-modal card-decoration">
             <i class="fa-solid fa-plus"></i>
             <i class="fa-solid fa-file-lines"></i>
             New Vip Orders
@@ -136,8 +150,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body form-group">
-                    <small class="text-muted form-text">Enter Item Name:</small>
-                    <textarea class="form-control w-100 h-100" name="order-detail"></textarea>
+
+                    <small class="text-muted form-text">Select Item:</small>
+                    <select class="form-select form-select mb-3" name="order-detail">
+                        <option selected value="Open Menu">Click to Open Menu</option>
+                        <option value="Big Mac">Big Mac</option>
+                        <option value="McChicken">McChicken</option>
+                        <option value="Filet-O-Fish">Filet-O-Fish</option>
+                        <option value="Quarter Pounder with Cheese">Quarter Pounder with Cheese</option>
+                        <option value="Double Quarter Pounder with Cheese">Double Quarter Pounder with Cheese</option>
+                        <option value="Double Big Mac">Double Big Mac</option>
+                        <option value="McDouble">McDouble</option>
+                        <option value="McRib">McRib</option>
+                        <option value="McNuggets">McNuggets</option>
+                        <option value="McWrap">McWrap</option>
+                    </select>
+
                     <br>
                     <small class="text-muted form-text">Enter Quantity:</small>
                     <input type="number" class="form-control" name="order-quantity" min="1" value="1">
@@ -155,19 +183,33 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Order Details</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Vip Order Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body form-group">
-                    <small class="text-muted form-text">Enter Item Name:</small>
-                    <textarea class="form-control w-100 h-100" name="vip-order-detail"></textarea>
+
+                    <small class="text-muted form-text">Select Item:</small>
+                    <select class="form-select form-select mb-3" name="vip-order-detail">
+                        <option selected value="Open Menu">Click to Open Menu</option>
+                        <option value="Big Mac">Big Mac</option>
+                        <option value="McChicken">McChicken</option>
+                        <option value="Filet-O-Fish">Filet-O-Fish</option>
+                        <option value="Quarter Pounder with Cheese">Quarter Pounder with Cheese</option>
+                        <option value="Double Quarter Pounder with Cheese">Double Quarter Pounder with Cheese</option>
+                        <option value="Double Big Mac">Double Big Mac</option>
+                        <option value="McDouble">McDouble</option>
+                        <option value="McRib">McRib</option>
+                        <option value="McNuggets">McNuggets</option>
+                        <option value="McWrap">McWrap</option>
+                    </select>
+
                     <br>
                     <small class="text-muted form-text">Enter Quantity:</small>
                     <input type="number" class="form-control" name="vip-order-quantity" min="1" value="1">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary add-vip-order">Add Order</button>
+                    <button type="button" class="btn btn-primary add-vip-order">Add Vip Order</button>
                 </div>
             </div>
         </div>
@@ -189,44 +231,51 @@
         let vip_order_amount = 0; // track order amount on the queue
 
         // QUEUES
+        let completed_order = 0;
         let bot_amount = 0;
         let processing = [];
         let order_queue = [];
+
          
         // Bot Quantity Buttons
 
         $(document).on("click", ".add-bot", function(){
-            bot_amount += 1;
-            
+
             $.post("processing.php", {
                 add_bot : true,
                 bot_amount : bot_amount
             }, function(data, success){
                 $(".bot-area").append(data);
-            });            
+            });
+
+            bot_amount += 1;   
+            $(".bot-count-updater").text(bot_amount);
         });
 
         $(document).on("click", ".remove-bot", function(){
             $("#delete-area").empty();
 
-            $.post("processing.php", {
-                remove_bot : true,
-                bot_amount : bot_amount
-            }, function(data, success){
-                $("#delete-area").append(data);
-            });
-            
-            $("#bot-"+bot_amount).remove();
-            
-            if(bot_amount > 1){
+            if(bot_amount > 0){
                 bot_amount -= 1;
+                $(".bot-count-updater").text(bot_amount);
+
+                $.post("processing.php", {
+                    remove_bot : true,
+                    bot_amount : bot_amount
+                }, function(data, success){
+                    $("#delete-area").append(data);
+                });
+                
+                $("#bot-"+bot_amount).remove();
             }
+
+            
         });
 
         // Processing Orders
 
         $(document).on("click", ".add-order", function(){  
-            if($("textarea[name='order-detail']").val().length !== 0){
+            if($("select[name='order-detail']").val() !== "Open Menu"){
                 regular_order_amount += 1;
                 regular_order_id += 1;
 
@@ -235,21 +284,23 @@
 
                 $.post("processing.php", {
                     order_amount : regular_order_id,
-                    order_detail : $("textarea[name='order-detail']").val(),
+                    order_detail : $("select[name='order-detail']").val(),
                     order_quantity : $("input[name='order-quantity']").val(),
                     customer_type : "regular"
                 }, function(data, success){
                     $(".pending-area").append(data);
                     $("#order-modal").modal('hide');
                 });
+
+                $(".pending-count-updater").text(order_queue.length);
             }
             else{
-                alert("Please enter something.");
+                alert("Please Select Something.");
             }
         });
 
         $(document).on("click", ".add-vip-order", function(){  
-            if($("textarea[name='vip-order-detail']").val().length > 0){
+            if($("select[name='vip-order-detail']").val() !== "Open Menu"){
                 vip_order_amount += 1;
                 vip_order_id += 1;
 
@@ -259,7 +310,7 @@
 
                 $.post("processing.php", {
                     order_amount : vip_order_id,
-                    order_detail : $("textarea[name='vip-order-detail']").val(),
+                    order_detail : $("select[name='vip-order-detail']").val(),
                     order_quantity : $("input[name='vip-order-quantity']").val(),
                     customer_type : "vip"
                 }, function(data, success){
@@ -271,9 +322,11 @@
                     }
                     $("#vip-order-modal").modal('hide');
                 });
+
+                $(".pending-count-updater").text(order_queue.length);
             }
             else{
-                alert("Please enter something.");
+                alert("Please Select Something.");
             }
 
         });
